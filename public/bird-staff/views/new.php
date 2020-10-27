@@ -12,11 +12,12 @@ if(is_post_request()) {
   $args['conservation_id'] = $_POST['conservation_id'] ?? NULL;
   $args['backyard_tips'] = $_POST['backyard_tips'] ?? NULL;
 
-  $bird = [];
+  $bird = new Bird($args);
+
+  $result = $bird->create();
   
-  $result = false;
   if($result == true) {
-    $new_id = 0;
+    $new_id = $bird->id;
     $_SESSION['message'] = 'The bird was created successfully.';
     redirect_to(url_for('/bird-staff/views/show.php?id=' . $new_id));
   } else {

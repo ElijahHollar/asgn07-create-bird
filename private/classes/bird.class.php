@@ -90,5 +90,23 @@
         }
     }
 
+    public function create() {
+        $sql = self::$database->prepare("INSERT INTO birds (common_name, habitat, food, conservation_id, backyard_tips) VALUES (:common_name, :habitat, :food, :conservation_id, :backyard_tips)");
+
+        $sql->bindValue(':common_name', $this->common_name, PDO::PARAM_STR);
+        $sql->bindValue(':habitat', $this->habitat, PDO::PARAM_STR);
+        $sql->bindValue(':food', $this->food, PDO::PARAM_STR);
+        $sql->bindValue(':conservation_id', $this->conservation_id, PDO::PARAM_STR);
+        $sql->bindValue(':backyard_tips', $this->backyard_tips, PDO::PARAM_STR);
+
+        $result = $sql->execute();
+
+        if( $result ) {
+            $this->id = self::$database->lastInsertId();
+        }
+
+        return $result;
+    }
+
 
 }
