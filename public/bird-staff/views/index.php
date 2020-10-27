@@ -40,6 +40,8 @@
       <?php } ?>
   	</table>
 
+    <p><a href="../../../../index.php">Return to WEB250 hompage</a></p>
+
   </div>
 
 </div>
